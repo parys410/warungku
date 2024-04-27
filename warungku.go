@@ -14,7 +14,7 @@ type Warung struct {
 
 type WarungInterface interface {
 	TambahBarang(barang *Barang)
-	KurangiQty(barang *Barang, qty int)
+	KurangiQty(namaBarang string, qty int)
 	CetakStruk()
 }
 
