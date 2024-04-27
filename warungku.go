@@ -34,11 +34,13 @@ func (warung *Warung) CetakStruk() {
 	var totalBelanja int
 
 	for _, item := range *warung.StrukBelanja {
+		fmt.Printf("-------------------------\n")
 		fmt.Printf("Barang : %s\n", item.Nama)
 		fmt.Printf("Harga : %d\n", item.Harga)
 		fmt.Printf("Qty : %d\n", item.Qty)
 		fmt.Printf("Jumlah : %d\n", item.Harga * item.Qty)
 		totalBelanja += item.Harga * item.Qty
 	}
+	fmt.Printf("-------------------------\n")
 	fmt.Printf("Total Belanja : %d\n", totalBelanja)
 }
