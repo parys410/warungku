@@ -19,7 +19,19 @@ type WarungInterface interface {
 }
 
 func (warung *Warung) TambahBarang(barang *Barang) {
-	*warung.StrukBelanja = append(*warung.StrukBelanja, *barang)
+	foundIndex := -1
+	for i, item := range *warung.StrukBelanja {
+		if item.Nama == barang.Nama {
+			foundIndex = i
+			break
+		}
+	}
+
+	if foundIndex == -1 {
+		*warung.StrukBelanja = append(*warung.StrukBelanja, *barang)
+	} else {
+		(*warung.StrukBelanja)[foundIndex].Qty = (*warung.StrukBelanja)[foundIndex].Qty + barang.Qty
+	}
 }
 
 func (warung *Warung) KurangiQty(namaBarang string, qty int) {
@@ -34,7 +46,7 @@ func (warung *Warung) KurangiQty(namaBarang string, qty int) {
 	if foundIndex == -1 {
 		fmt.Printf("Barang %s tidak ditemukan\n", namaBarang)
 	} else {
-		if (*warung.StrukBelanja)[foundIndex].Qty - qty < 0 {
+		if (*warung.StrukBelanja)[foundIndex].Qty - qty <= 0 {
 			// Hapus dari slice
 			sliceBefore := (*warung.StrukBelanja)[:foundIndex]
 			sliceAfter := (*warung.StrukBelanja)[foundIndex+1:]
