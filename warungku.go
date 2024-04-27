@@ -12,6 +12,12 @@ type Warung struct {
 	StrukBelanja *[]Barang
 }
 
+type WarungInterface interface {
+	TambahBarang(barang *Barang)
+	KurangiQty(barang *Barang, qty int)
+	CetakStruk()
+}
+
 func (warung *Warung) TambahBarang(barang *Barang) {
 	*warung.StrukBelanja = append(*warung.StrukBelanja, *barang)
 }
