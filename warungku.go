@@ -22,17 +22,17 @@ func (warung *Warung) TambahBarang(barang *Barang) {
 	*warung.StrukBelanja = append(*warung.StrukBelanja, *barang)
 }
 
-func (warung *Warung) KurangiQty(barang *Barang, qty int) {
+func (warung *Warung) KurangiQty(namaBarang string, qty int) {
 	foundIndex := -1
 	for i, item := range *warung.StrukBelanja {
-		if item.Nama == barang.Nama {
+		if item.Nama == namaBarang {
 			foundIndex = i
 			break
 		}
 	}
 
 	if foundIndex == -1 {
-		fmt.Printf("Barang %s tidak ditemukan\n", barang.Nama)
+		fmt.Printf("Barang %s tidak ditemukan\n", namaBarang)
 	} else {
 		if (*warung.StrukBelanja)[foundIndex].Qty - qty < 0 {
 			// Hapus dari slice
